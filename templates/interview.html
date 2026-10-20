@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Practice interview — InterviewIQ{% endblock %}
+{% block content %}
+<div class="interview-layout"><section class="interview-main">
+<a class="back-link" href="/dashboard">← Dashboard</a><div class="eyebrow">PRACTICE SESSION</div><h1>Let's practice your answer.</h1><p class="muted">Take your time. Answer in your own words; this is a learning space.</p>
+<div class="question-card"><div class="question-meta"><span class="category-pill">{{ category }}</span><span class="difficulty">{{ difficulty|capitalize }} practice</span></div><div class="question-number">QUESTION {{ index + 1 }}</div><h2>{{ question }}</h2><div class="question-hint">Tip: define the concept, explain it clearly, and include a relevant example.</div></div>
+<form method="post" action="/evaluate" class="answer-form">
+<input type="hidden" name="category" value="{{ category }}"><input type="hidden" name="question" value="{{ question }}">
+<label for="answer">Your answer</label><textarea id="answer" name="answer" required minlength="3" maxlength="12000" rows="8" placeholder="Start typing your answer here..."></textarea>
+<div class="answer-footer"><span id="word-count">0 words</span><button class="btn primary" type="submit">Evaluate answer →</button></div>
+</form>
+<div class="next-question"><span>Want another question?</span><div class="category-links">{% for cat in categories %}<a href="/interview?category={{ cat }}&index={{ index + 1 }}" class="chip {{ 'selected' if cat==category else '' }}">{{ cat }}</a>{% endfor %}<a href="/interview?category={{ category }}&index={{ index + 1 }}" class="chip">Next question ↗</a></div></div>
+</section><aside class="interview-aside"><div class="panel"><div class="feature-icon purple">✧</div><h3>How you'll be evaluated</h3><ul class="check-list"><li>Relevance to the question</li><li>Technical correctness (AI mode)</li><li>Completeness and explanation</li><li>Clarity and answer structure</li></ul><div class="notice small-notice">Feedback is advisory. Always verify technical information independently.</div></div><div class="panel"><h3>Answer framework</h3><div class="framework-step"><b>01</b><span><strong>Answer</strong><small>Start with the main point.</small></span></div><div class="framework-step"><b>02</b><span><strong>Explain</strong><small>Describe how or why it works.</small></span></div><div class="framework-step"><b>03</b><span><strong>Example</strong><small>Connect it to a real use case.</small></span></div></div></aside></div>
+<script>
+const answerBox=document.getElementById('answer'), wordCount=document.getElementById('word-count');
+if(answerBox){answerBox.addEventListener('input',()=>{const n=answerBox.value.trim()?answerBox.value.trim().split(/\s+/).length:0;wordCount.textContent=n+' words';});}
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Create account — InterviewIQ{% endblock %}
+{% block content %}
+<div class="auth-wrap"><section class="auth-card"><div class="eyebrow">START YOUR JOURNEY</div><h1>Create your account</h1><p class="muted">Build better interview habits, one practice at a time.</p>
+<form method="post" action="/signup" class="form">
+<label>Full name<input name="name" required minlength="2" placeholder="Your name"></label>
+<label>Email address<input name="email" type="email" required placeholder="you@example.com"></label>
+<label>Password<input name="password" type="password" required minlength="8" placeholder="At least 8 characters"></label>
+<button class="btn primary full" type="submit">Create account →</button></form>
+<p class="form-bottom">Already registered? <a href="/login">Log in</a></p></section></div>
+{% endblock %}

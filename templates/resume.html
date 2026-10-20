@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Resume analyzer — InterviewIQ{% endblock %}
+{% block content %}
+<a class="back-link" href="/dashboard">← Dashboard</a><section class="page-heading"><div><div class="eyebrow">RESUME INTELLIGENCE</div><h1>Understand your skills.</h1><p class="muted">Upload a text-based PDF or TXT resume to extract recognized skills.</p></div></section>
+<div class="resume-grid"><section class="panel upload-panel"><div class="upload-icon">↑</div><h2>Upload your resume</h2><p class="muted">PDF or TXT · maximum 5 MB</p><form method="post" action="/resume" enctype="multipart/form-data" class="form"><label>Choose file<input type="file" name="resume" accept=".pdf,.txt" required></label><button type="submit" class="btn primary full">Analyze resume →</button></form><div class="notice small-notice">Resume text is stored in the local application database for your account. Use only documents you have permission to upload. Do not upload sensitive identity or financial documents.</div></section>
+<section class="panel"><div class="eyebrow">WHAT THIS DOES</div><h2>Skill extraction</h2><p class="muted">The current version looks for known skill terms in extracted text. It does not verify proficiency or guarantee job-description fit.</p><ul class="check-list"><li>Python, SQL and data tools</li><li>Machine learning and NLP terms</li><li>Web development frameworks</li><li>AI and generative AI keywords</li></ul>
+{% if filename %}<div class="resume-result"><strong>Latest file: {{ filename }}</strong><p>Recognized skills:</p><div class="skill-tags">{% for skill in skills %}<span class="skill-tag">{{ skill }}</span>{% endfor %}</div></div>{% endif %}
+</section></div>
+{% endblock %}

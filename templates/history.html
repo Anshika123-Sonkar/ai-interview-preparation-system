@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Practice history — InterviewIQ{% endblock %}
+{% block content %}
+<section class="page-heading"><div><div class="eyebrow">YOUR JOURNEY</div><h1>Practice history</h1><p class="muted">Review past answers and use feedback to improve.</p></div><a class="btn primary" href="/interview">New practice →</a></section>
+<div class="panel history-panel">
+{% if history %}{% for item in history %}
+<a class="history-item" href="/report/{{ item.id }}"><div class="history-icon">{{ 'T' if item.category=='Technical' else ('H' if item.category=='HR' else 'B') }}</div><div class="history-main"><strong>{{ item.question }}</strong><span>{{ item.category }} · {{ item.created_at[:16].replace('T',' ') }}</span></div><div class="mini-score">{{ item.score|int }}<small>/100</small></div></a>
+{% endfor %}{% else %}<div class="empty-state"><h3>No practice history yet</h3><p>Complete a practice question to create your first report.</p><a class="btn primary" href="/interview">Start practicing</a></div>{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Dashboard — InterviewIQ{% endblock %}
+{% block content %}
+<section class="page-heading"><div><div class="eyebrow">YOUR WORKSPACE</div><h1>Welcome back, {{ user.name.split(' ')[0] }} <span class="wave">✦</span></h1><p class="muted">Small, consistent practice leads to better interviews.</p></div><a class="btn primary" href="/interview">Start an interview →</a></section>
+<section class="stats-grid">
+<div class="stat-card"><span class="stat-label">INTERVIEWS COMPLETED</span><strong>{{ count }}</strong><span class="stat-note">Practice sessions saved</span></div>
+<div class="stat-card"><span class="stat-label">AVERAGE PRACTICE SCORE</span><strong>{{ average }}<small>/100</small></strong><span class="stat-note">Across submitted answers</span></div>
+<div class="stat-card"><span class="stat-label">RESUME STATUS</span><strong class="stat-word">{{ 'Ready' if resume else 'Pending' }}</strong><span class="stat-note">{{ 'Latest resume analyzed' if resume else 'Upload to extract skills' }}</span></div>
+</section>
+<section class="dashboard-grid">
+<div class="panel"><div class="panel-heading"><div><h2>Recent practice</h2><p class="muted">Your latest submitted answers</p></div><a href="/history" class="text-link">View all →</a></div>
+{% if history %}
+  {% for item in history %}
+  <a class="history-item" href="/report/{{ item.id }}"><div class="history-icon">{{ 'T' if item.category=='Technical' else ('H' if item.category=='HR' else 'B') }}</div><div class="history-main"><strong>{{ item.question }}</strong><span>{{ item.category }} · {{ item.created_at[:16].replace('T',' ') }}</span></div><div class="mini-score">{{ item.score|int }}<small>/100</small></div></a>
+  {% endfor %}
+{% else %}<div class="empty-state"><div class="empty-icon">✧</div><h3>Your progress starts here</h3><p>Complete your first practice question to see feedback and scores here.</p><a class="btn secondary" href="/interview">Try a question</a></div>{% endif %}
+</div>
+<aside class="panel side-panel"><div class="eyebrow">QUICK ACTIONS</div><h2>Keep the momentum</h2><a class="action-link" href="/interview?category=Technical"><span class="action-icon purple">⌘</span><span><strong>Technical interview</strong><small>ML, Python, SQL and CS basics</small></span><b>→</b></a><a class="action-link" href="/interview?category=HR"><span class="action-icon blue">◎</span><span><strong>HR interview</strong><small>Stories, goals and strengths</small></span><b>→</b></a><a class="action-link" href="/resume"><span class="action-icon green">▤</span><span><strong>Analyze resume</strong><small>Extract skills from PDF or TXT</small></span><b>→</b></a>
+<div class="tip-box"><strong>Coach's tip</strong><p>Use a clear structure: answer the question, explain why, and finish with an example.</p></div></aside>
+</section>
+{% endblock %}

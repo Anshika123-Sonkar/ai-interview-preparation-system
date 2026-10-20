@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block title %}InterviewIQ — Practice smarter{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> YOUR PERSONAL AI INTERVIEW COACH</div>
+    <h1>Turn interview anxiety into <span class="gradient-text">confidence.</span></h1>
+    <p class="hero-sub">Practice technical, HR and behavioral interviews. Get structured feedback, understand your weak spots and build a smarter preparation plan.</p>
+    <div class="hero-actions"><a class="btn primary" href="/signup">Start practicing <span>→</span></a><a class="btn secondary" href="/login">I have an account</a></div>
+    <div class="trust-line"><span>✓</span> Practice at your own pace <span>✓</span> Feedback after every answer</div>
+  </div>
+  <div class="hero-card">
+    <div class="mock-top"><div><span class="status-dot"></span> LIVE PRACTICE PREVIEW</div><span class="tiny-pill">QUESTION 03</span></div>
+    <div class="mock-label">TECHNICAL INTERVIEW · ML</div>
+    <h3>What is overfitting, and how can you reduce it?</h3>
+    <div class="mock-answer"><span class="mic">◉</span><div><strong>Your answer</strong><p>Overfitting happens when a model learns the training data too closely and does not generalize well...</p></div></div>
+    <div class="mock-score"><div class="score-ring">82<span>/100</span></div><div><strong>Good progress!</strong><p>Try adding a concrete example and explaining regularization.</p></div></div>
+    <div class="mock-bars"><span style="width:85%"></span><span style="width:68%"></span><span style="width:76%"></span></div>
+    <div class="mock-foot"><span>Relevance</span><span>Clarity</span><span>Completeness</span></div>
+  </div>
+</section>
+<section class="feature-grid">
+  <article class="feature"><div class="feature-icon purple">✧</div><h3>Adaptive practice</h3><p>Practice role-specific questions and grow from foundational concepts to deeper follow-ups.</p></article>
+  <article class="feature"><div class="feature-icon blue">◈</div><h3>Useful feedback</h3><p>Review strengths, improvement points and a score breakdown after every response.</p></article>
+  <article class="feature"><div class="feature-icon green">↗</div><h3>Track progress</h3><p>Keep your interview history and monitor your practice scores over time.</p></article>
+</section>
+<div class="notice">Scores are practice guidance, not a validated measure of job readiness. Local mode uses a simple heuristic; AI mode requires an API key.</div>
+{% endblock %}

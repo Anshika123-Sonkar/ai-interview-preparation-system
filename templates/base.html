@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}InterviewIQ{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/"><span class="brand-icon">✦</span> InterviewIQ</a>
+  <nav>
+    {% if user %}
+      <a href="/dashboard">Dashboard</a><a href="/interview">Practice</a><a href="/resume">Resume</a><a href="/history">History</a>
+      <span class="user-chip">{{ user.name }}</span><a class="nav-logout" href="/logout">Log out</a>
+    {% else %}
+      <a href="/login">Log in</a><a class="nav-cta" href="/signup">Get started</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+  {% if success %}<div class="alert success">{{ success }}</div>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer>InterviewIQ · AI-assisted practice for learning, not hiring decisions.</footer>
+</body>
+</html>
